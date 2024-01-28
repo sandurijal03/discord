@@ -4,6 +4,7 @@ import express, { Request, Response } from 'express'
 import dotenv from 'dotenv'
 import cors from 'cors'
 
+import mainRouter from './routes/index'
 import connectDB from './db/connectDB'
 
 const mountServer = async () => {
@@ -17,9 +18,7 @@ const mountServer = async () => {
 
   const server = http.createServer(app)
 
-  app.get('/', (req: Request, res: Response) => {
-    res.json({ message: 'started' })
-  })
+  app.use('/api', mainRouter)
 
   const port = process.env.PORT || 5000
   server.listen(port, () => {
