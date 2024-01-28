@@ -1,7 +1,13 @@
 import express, { Request, Response } from 'express'
+import connectDB from './db/connectDB'
+import dotenv from "dotenv"
 
-const mountServer = () => {
+
+
+const mountServer = async () => {
   const app = express()
+  dotenv.config()
+  await connectDB()
 
   app.get('/', (req: Request, res: Response) => {
     res.json({ message: 'started' })
