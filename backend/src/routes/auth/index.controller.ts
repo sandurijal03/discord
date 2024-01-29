@@ -3,7 +3,7 @@ import bcrypt from 'bcryptjs'
 
 import User from '../../models/User'
 
-export const loginController = async (req: Request, res: Response) => {
+export const registerController = async (req: Request, res: Response) => {
   try {
     const { username, email, password } = req.body
 
@@ -42,9 +42,32 @@ export const loginController = async (req: Request, res: Response) => {
       .status(500)
       .json({ success: false, message: 'Error occured. Please try again' })
   }
-  res.json({ message: 'login' })
 }
 
-export const registerController = async (req: Request, res: Response) => {
-  res.json({ message: 'register' })
+export const loginController = async (req: Request, res: Response) => {
+  try {
+    const { username, password } = req.body
+    const user = await User.findOne({ username })
+    if (user && (await bcrypt.compare(password, user.password))) {
+      const token = 'jwt token'
+      return res.status(200).json({
+        success: true,
+        message: 'Login Successful',
+        userDetails: {
+          email: user.email,
+          token,
+          username: user.username,
+        },
+      })
+    }
+
+    return res.status(400).json({
+      success: false,
+      message: 'Invalid credentials.Please try again.',
+    })
+  } catch (err) {
+    return res
+      .status(500)
+      .json({ success: false, message: 'Error occured. Please try again' })
+  }
 }
