@@ -59,12 +59,10 @@ export const loginController = async (req: Request, res: Response) => {
     const { username, password } = req.body
     const user = await User.findOne({ username })
     if (user && (await bcrypt.compare(password, user.password))) {
-      const token = 'jwt token'
       // create jwt token
       const token = jwt.sign(
         {
           userId: user._id,
-          email,
         },
         process.env.JWT_SECRET as string,
         {
