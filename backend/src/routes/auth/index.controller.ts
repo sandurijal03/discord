@@ -1,5 +1,6 @@
 import { Request, Response } from 'express'
 import bcrypt from 'bcryptjs'
+import jwt from 'jsonwebtoken'
 
 import User from '../../models/User'
 
@@ -25,7 +26,16 @@ export const registerController = async (req: Request, res: Response) => {
     })
 
     // create jwt token
-    const token = 'jwt token'
+    const token = jwt.sign(
+      {
+        userId: user._id,
+        email,
+      },
+      process.env.JWT_SECRET as string,
+      {
+        expiresIn: '1d',
+      },
+    )
 
     return res.status(201).json({
       success: true,
@@ -50,6 +60,17 @@ export const loginController = async (req: Request, res: Response) => {
     const user = await User.findOne({ username })
     if (user && (await bcrypt.compare(password, user.password))) {
       const token = 'jwt token'
+      // create jwt token
+      const token = jwt.sign(
+        {
+          userId: user._id,
+          email,
+        },
+        process.env.JWT_SECRET as string,
+        {
+          expiresIn: '1d',
+        },
+      )
       return res.status(200).json({
         success: true,
         message: 'Login Successful',
