@@ -3,6 +3,8 @@ import { createRoot } from 'react-dom/client'
 
 import Main from './Main'
 import { createGlobalStyle } from 'styled-components'
+import { Provider } from 'react-redux'
+import { store } from './store/store'
 
 const domRoot = document.querySelector('#root')
 
@@ -16,7 +18,9 @@ const GlobalStyle = createGlobalStyle`
 
 createRoot(domRoot as Element).render(
   <React.StrictMode>
-    <GlobalStyle />
-    <Main />
+    <Provider store={store}>
+      <GlobalStyle />
+      <Main />
+    </Provider>
   </React.StrictMode>,
 )
