@@ -55,7 +55,7 @@ module.exports = {
   },
   plugins: [new HtmlWebapackPlugin({ template: './public/index.html' })],
   devServer: {
-    port: 5000,
+    port: 3000,
     static: {
       directory: path.resolve(__dirname, 'public'),
     },
