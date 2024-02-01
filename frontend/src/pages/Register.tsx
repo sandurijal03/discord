@@ -1,9 +1,12 @@
 import * as React from 'react'
+import AuthBox from '../shared/components/AuthBox'
 
 const Register = () => {
   return (
     <div>
-      <h1>Register</h1>
+      <AuthBox>
+        <h1>Register</h1>
+      </AuthBox>
     </div>
   )
 }
