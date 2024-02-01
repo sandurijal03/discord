@@ -1,15 +1,21 @@
 import * as React from 'react'
+import { isFormElement } from 'react-router-dom/dist/dom'
 
 import AuthBox from '../../../shared/components/AuthBox'
+import LoginFooter from './LoginFooter'
 import LoginHeader from './LoginHeader'
 import LoginInputs from './LoginInputs'
 
 const Login = () => {
   const [username, setUsername] = React.useState('')
   const [password, setPassword] = React.useState('')
+  const [isFormValid, setIsFormValid] = React.useState(false)
 
-  console.log('username', username)
-  console.log('username', password)
+  const handleLogin = () => {
+    if (!username || !password) {
+      setIsFormValid(false)
+    }
+  }
 
   return (
     <AuthBox>
@@ -20,6 +26,7 @@ const Login = () => {
         password={password}
         setPassword={setPassword}
       />
+      <LoginFooter isFormValid={isFormValid} handleLogin={handleLogin} />
     </AuthBox>
   )
 }
