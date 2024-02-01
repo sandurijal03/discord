@@ -1,9 +1,10 @@
 import * as React from 'react'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-import Login from './pages/Login'
-import Register from './pages/Register'
+
 import Dashboard from './pages/Dashboard'
 import Home from './pages/Home'
+import Login from './pages/auth/Login/Login'
+import Register from './pages/auth/Register/Register'
 
 const Main: React.FC = () => {
   const router = createBrowserRouter([
