@@ -1,8 +1,7 @@
 import * as React from 'react'
 import { Typography } from '@mui/material'
-import AuthBox from '../shared/components/AuthBox'
 
-const LoginPageHeader = () => {
+const LoginHeader = () => {
   return (
     <>
       <Typography variant='h5' sx={{ color: '#fff' }}>
@@ -15,12 +14,4 @@ const LoginPageHeader = () => {
   )
 }
 
-const Login = () => {
-  return (
-    <AuthBox>
-      <LoginPageHeader />
-    </AuthBox>
-  )
-}
-
-export default Login
+export default LoginHeader
