@@ -2,26 +2,26 @@ import * as React from 'react'
 import InputWithLabel from '../../../shared/components/InputWithLabel'
 
 type LoginInputsProps = {
-  username: string
-  setUsername: any
+  email: string
+  setEmail: any
   password: string
   setPassword: any
 }
 
 const LoginInputs: React.FC<LoginInputsProps> = ({
-  username,
-  setUsername,
+  email,
+  setEmail,
   password,
   setPassword,
 }) => {
   return (
     <>
       <InputWithLabel
-        value={username}
-        label='Username'
-        type='text'
-        placeholder='Username'
-        setValue={setUsername}
+        value={email}
+        label='Email'
+        type='email'
+        placeholder='Email'
+        setValue={setEmail}
       />
       <InputWithLabel
         value={password}
