@@ -4,6 +4,8 @@ import AuthBox from '../../../shared/components/AuthBox'
 import RegisterInputs from './RegisterInputs'
 import RegisterFooter from './RegisterPageFooter'
 import { validateRegisterForm } from '../../../shared/utils/validators'
+import { registerActions } from '../../../store/actions/authActions'
+import { useNavigate } from 'react-router-dom'
 
 const Register = () => {
   const [email, setEmail] = React.useState<string>('')
@@ -16,8 +18,11 @@ const Register = () => {
     setIsFormValid(validateRegisterForm({ email, username, password }))
   }, [email, username, password, setIsFormValid])
 
+  const navigate = useNavigate()
+
   const handleRegister = () => {
-    console.log(email, username, password)
+    registerActions({ email, username, password })
+    navigate('/dashboard')
   }
 
   return (
